@@ -9,23 +9,23 @@ const notoThai = Noto_Sans_Thai({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://engma-thailand.chic-horse-1549.chatgpt.site'),
+  metadataBase: new URL('https://engma-thailand.hongthayban.chatgpt.site'),
   title: 'Engma Thailand | บริการทรัพยากรบุคคลจีน-ไทย',
   description: 'พันธมิตรบริการทรัพยากรบุคคลครบวงจร สำหรับธุรกิจจีนที่ลงทุนและเติบโตในประเทศไทย',
   openGraph: {
     type: 'website',
     locale: 'th_TH',
-    url: 'https://engma-thailand.chic-horse-1549.chatgpt.site',
+    url: 'https://engma-thailand.hongthayban.chatgpt.site',
     siteName: 'Engma Thailand',
     title: 'Engma Thailand | People. Business. Beyond.',
     description: 'พันธมิตรทรัพยากรบุคคลจีน-ไทยครบวงจร',
-    images: [{ url: 'https://engma-thailand.chic-horse-1549.chatgpt.site/og.png', width: 1734, height: 907, alt: 'Engma Thailand - People. Business. Beyond.' }],
+    images: [{ url: 'https://engma-thailand.hongthayban.chatgpt.site/og.png', width: 1734, height: 907, alt: 'Engma Thailand - People. Business. Beyond.' }],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Engma Thailand | People. Business. Beyond.',
     description: 'พันธมิตรทรัพยากรบุคคลจีน-ไทยครบวงจร',
-    images: ['https://engma-thailand.chic-horse-1549.chatgpt.site/og.png'],
+    images: ['https://engma-thailand.hongthayban.chatgpt.site/og.png'],
   },
 };
 
