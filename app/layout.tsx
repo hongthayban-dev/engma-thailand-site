@@ -2,6 +2,8 @@ import type { Metadata } from 'next';
 import { Noto_Sans_Thai } from 'next/font/google';
 import './globals.css';
 
+const publicSiteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://engma-thailand.hongthayban.chatgpt.site';
+
 const notoThai = Noto_Sans_Thai({
   variable: '--font-noto-thai',
   subsets: ['thai', 'latin'],
@@ -9,23 +11,23 @@ const notoThai = Noto_Sans_Thai({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://engma-thailand.hongthayban.chatgpt.site'),
+  metadataBase: new URL(publicSiteUrl),
   title: 'Engma Thailand | บริการทรัพยากรบุคคลจีน-ไทย',
   description: 'พันธมิตรบริการทรัพยากรบุคคลครบวงจร สำหรับธุรกิจจีนที่ลงทุนและเติบโตในประเทศไทย',
   openGraph: {
     type: 'website',
     locale: 'th_TH',
-    url: 'https://engma-thailand.hongthayban.chatgpt.site',
+    url: publicSiteUrl,
     siteName: 'Engma Thailand',
     title: 'Engma Thailand | People. Business. Beyond.',
     description: 'พันธมิตรทรัพยากรบุคคลจีน-ไทยครบวงจร',
-    images: [{ url: 'https://engma-thailand.hongthayban.chatgpt.site/og.png', width: 1734, height: 907, alt: 'Engma Thailand - People. Business. Beyond.' }],
+    images: [{ url: `${publicSiteUrl}/og.png`, width: 1734, height: 907, alt: 'Engma Thailand - People. Business. Beyond.' }],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Engma Thailand | People. Business. Beyond.',
     description: 'พันธมิตรทรัพยากรบุคคลจีน-ไทยครบวงจร',
-    images: ['https://engma-thailand.hongthayban.chatgpt.site/og.png'],
+    images: [`${publicSiteUrl}/og.png`],
   },
 };
 

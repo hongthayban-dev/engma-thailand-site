@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useState } from 'react';
 import Link from 'next/link';
+import { assetPath } from '../site-path';
 
 type Service = {
   key: string;
@@ -131,7 +132,7 @@ export default function Home() {
     <main>
       <header className={`site-header ${scrolled ? 'is-scrolled' : ''}`}>
         <a className="brand" href="#top" aria-label="Engma Thailand home">
-          <img src="/assets/engma-logo.png" alt="Engma 英格玛" />
+          <img src={assetPath('/assets/engma-logo.png')} alt="Engma 英格玛" />
           <span>THAILAND</span>
         </a>
         <nav className={menuOpen ? 'is-open' : ''} aria-label="เมนูหลัก">
@@ -147,7 +148,7 @@ export default function Home() {
       </header>
 
       <section className="hero" id="top">
-        <img className="hero-image" src="/assets/bangkok.webp" alt="ทิวทัศน์กรุงเทพมหานครยามเย็น" />
+        <img className="hero-image" src={assetPath('/assets/bangkok.webp')} alt="ทิวทัศน์กรุงเทพมหานครยามเย็น" />
         <div className="hero-shade" />
         <div className="hero-grid" />
         <div className="hero-orbit orbit-one" /><div className="hero-orbit orbit-two" />
@@ -182,7 +183,7 @@ export default function Home() {
 
       <section className="shareholders" id="shareholders">
         <article className="shareholder-card shareholder-thai">
-          <img src="/assets/thai-port.webp" alt="ท่าเรือและเครือข่ายธุรกิจของ Namyong Group" />
+          <img src={assetPath('/assets/thai-port.webp')} alt="ท่าเรือและเครือข่ายธุรกิจของ Namyong Group" />
           <div className="card-overlay" />
           <div className="shareholder-content">
             <p>THAILAND PARTNER</p>
@@ -192,7 +193,7 @@ export default function Home() {
           </div>
         </article>
         <article className="shareholder-card shareholder-china">
-          <img src="/assets/team.webp" alt="อุตสาหกรรมที่ Engma ให้บริการ" />
+          <img src={assetPath('/assets/team.webp')} alt="อุตสาหกรรมที่ Engma ให้บริการ" />
           <div className="card-overlay" />
           <div className="shareholder-content">
             <p>CHINA PARTNER</p>
@@ -212,7 +213,7 @@ export default function Home() {
       </section>
 
       <section className="pain-section">
-        <div className="pain-photo"><img src="/assets/bangkok.webp" alt="กรุงเทพมหานคร ศูนย์กลางธุรกิจของประเทศไทย" /></div>
+        <div className="pain-photo"><img src={assetPath('/assets/bangkok.webp')} alt="กรุงเทพมหานคร ศูนย์กลางธุรกิจของประเทศไทย" /></div>
         <div className="pain-content">
           <p className="section-kicker light">WHY ENGMA THAILAND</p>
           <h2>เปลี่ยน 5 ความท้าทาย<br />ให้เป็นทางเติบโต</h2>
@@ -245,7 +246,7 @@ export default function Home() {
             ))}
           </div>
           <article className="service-feature" key={selected.key}>
-            <div className="service-visual"><img src={selected.image} alt={selected.title} /><span>{selected.en}</span></div>
+            <div className="service-visual"><img src={assetPath(selected.image)} alt={selected.title} /><span>{selected.en}</span></div>
             <div className="service-detail">
               <p className="detail-no">SERVICE / {selected.no}</p>
               <h3>{selected.title}</h3>
@@ -280,7 +281,7 @@ export default function Home() {
       </section>
 
       <section className="resource-band">
-        <img src="/assets/factory.webp" alt="โรงงานสมัยใหม่ในประเทศไทย" />
+        <img src={assetPath('/assets/factory.webp')} alt="โรงงานสมัยใหม่ในประเทศไทย" />
         <div className="resource-shade" />
         <div className="resource-copy"><p className="section-kicker light">TALENT INFRASTRUCTURE</p><h2>ทรัพยากรจีน–ไทย<br />พร้อมส่งมอบอย่างเสถียร</h2></div>
         <div className="resource-stats">
@@ -289,7 +290,7 @@ export default function Home() {
       </section>
 
       <section className="expertise section">
-        <div className="expertise-image"><img src="/assets/legal.webp" alt="การบริหารความเสี่ยงและการปฏิบัติตามกฎหมาย" /><div><span>CN</span><i>×</i><span>TH</span></div></div>
+        <div className="expertise-image"><img src={assetPath('/assets/legal.webp')} alt="การบริหารความเสี่ยงและการปฏิบัติตามกฎหมาย" /><div><span>CN</span><i>×</i><span>TH</span></div></div>
         <div className="expertise-copy"><p className="section-kicker">CROSS-BORDER COMPLIANCE</p><h2>ทีมลงมือจริง<br />มาตรฐานสองประเทศ</h2><p>ผสานความเชี่ยวชาญด้าน HR และ Risk Control ของ Engma กับกฎหมายและประสบการณ์ปฏิบัติการในไทย ครอบคลุมตั้งแต่สำนักงานใหญ่จีนถึงทีมงานในพื้นที่</p>
           <div className="team-stats">
             <span><b>10–15 ปี</b>ทีมบริหารโครงการ</span><span><b>10–20 ปี</b>ทีมที่ปรึกษาผู้เชี่ยวชาญ</span><span><b>100+</b>ทีมบริการลูกค้า</span><span><b>1,000+</b>ประสบการณ์วางแผนโครงการ</span>
@@ -312,20 +313,20 @@ export default function Home() {
       </section>
 
       <section className="process-section" id="process">
-        <div className="process-bg"><img src="/assets/process-office.webp" alt="สำนักงานและทีมปฏิบัติการของ Engma" /></div>
+        <div className="process-bg"><img src={assetPath('/assets/process-office.webp')} alt="สำนักงานและทีมปฏิบัติการของ Engma" /></div>
         <div className="process-content section"><p className="section-kicker light">04 / HOW WE WORK</p><div className="process-head"><h2>6 ขั้นตอนชัดเจน<br />จากโจทย์สู่ผลลัพธ์</h2><p>ทุกช่วงมีจุดตรวจวัดและเกณฑ์ส่งมอบที่ตกลงร่วมกัน</p></div>
           <div className="process-line">{processSteps.map(([no, title, copy]) => <article key={no}><span>{no}</span><div className="process-dot" /><h3>{title}</h3><p>{copy}</p></article>)}</div>
         </div>
       </section>
 
       <section className="closing" id="contact">
-        <img src="/assets/closing.webp" alt="วัดอรุณ กรุงเทพมหานคร" />
+        <img src={assetPath('/assets/closing.webp')} alt="วัดอรุณ กรุงเทพมหานคร" />
         <div className="closing-shade" />
         <div className="closing-content"><p>OUR COMMITMENT</p><h2>ให้ทุกธุรกิจจีนที่เข้าสู่ตลาดไทย<br />ได้รับบริการ HR ที่ไว้วางใจได้</h2><div><a className="button button-primary" href="https://www.engmahro.com/lianxiwomen/" target="_blank" rel="noreferrer">เริ่มต้นพูดคุยกับเรา <span>↗</span></a><a className="button button-ghost" href="mailto:engmahro@engma.net">engmahro@engma.net</a></div></div>
       </section>
 
       <footer>
-        <div className="footer-brand"><img src="/assets/engma-logo.png" alt="Engma" /><p>Professional · Collaborative · Win-win · Cross-cultural empowerment</p></div>
+        <div className="footer-brand"><img src={assetPath('/assets/engma-logo.png')} alt="Engma" /><p>Professional · Collaborative · Win-win · Cross-cultural empowerment</p></div>
         <div className="footer-links"><a href="#about">เกี่ยวกับเรา</a><a href="#services">บริการ</a><a href="#advantages">จุดแข็ง</a><a href="#process">ขั้นตอน</a></div>
         <div className="footer-end"><span>ENGMA (THAILAND) COMPANY LIMITED</span><span>© 2026 ENGMA THAILAND</span></div>
       </footer>

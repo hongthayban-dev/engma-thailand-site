@@ -1,3 +1,6 @@
+import Link from 'next/link';
+import { assetPath } from './site-path';
+
 const concepts = [
   {
     no: '01', href: '/design-1', title: 'แบบที่ 1', subtitle: 'Corporate Immersive',
@@ -17,7 +20,7 @@ export default function DesignSelector() {
       <div className="selector-orb selector-orb-one" />
       <div className="selector-orb selector-orb-two" />
       <header className="selector-header">
-        <img src="/assets/engma-logo.png" alt="Engma 英格玛" />
+        <img src={assetPath('/assets/engma-logo.png')} alt="Engma 英格玛" />
         <span>THAILAND · WEBSITE CONCEPTS</span>
       </header>
       <section className="selector-intro">
@@ -27,13 +30,13 @@ export default function DesignSelector() {
       </section>
       <section className="selector-grid" aria-label="ตัวเลือกแบบเว็บไซต์">
         {concepts.map((concept) => (
-          <a className={`selector-card ${concept.className}`} href={concept.href} key={concept.no}>
-            <img src={concept.image} alt="" />
+          <Link className={`selector-card ${concept.className}`} href={concept.href} key={concept.no}>
+            <img src={assetPath(concept.image)} alt="" />
             <span className="selector-card-shade" />
             <span className="selector-card-number">{concept.no}</span>
             <span className="selector-card-copy"><small>{concept.subtitle}</small><strong>{concept.title}</strong><span>{concept.description}</span></span>
             <span className="selector-open">เปิดดู <i>↗</i></span>
-          </a>
+          </Link>
         ))}
       </section>
       <footer className="selector-footer"><span>PEOPLE CONNECT A BRIGHTER TOMORROW</span><span>ENGMA THAILAND © 2026</span></footer>

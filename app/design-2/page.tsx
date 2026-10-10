@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { assetPath } from '../site-path';
 
 const solutions = [
   { no: '01', title: 'Outsourcing', thai: 'วางกำลังคนให้พร้อมเดินงาน', copy: 'ดูแลตั้งแต่แรงงานหน้างานจนถึงการบริหารกระบวนการผลิต พร้อมทีมสองภาษาและระบบนายจ้างที่สอดคล้องกับกฎหมายไทย', items: ['BPO', 'Job Outsourcing', 'Professional Staffing', 'HRO'], image: '/assets/factory.webp' },
@@ -24,7 +25,7 @@ export default function DesignTwo() {
   return (
     <main className="concept-two">
       <header className="v2-header">
-        <a className="v2-brand" href="#top" aria-label="Engma Thailand home"><img src="/assets/engma-logo.png" alt="Engma 英格玛" /><span>THAILAND</span></a>
+        <a className="v2-brand" href="#top" aria-label="Engma Thailand home"><img src={assetPath('/assets/engma-logo.png')} alt="Engma 英格玛" /><span>THAILAND</span></a>
         <div className="v2-links" role="navigation" aria-label="เมนูหลัก"><a href="#about">เกี่ยวกับเรา</a><a href="#solutions">บริการ</a><a href="#strengths">จุดแข็ง</a><a href="#process">ขั้นตอน</a></div>
         <a className="v2-contact" href="#contact">เริ่มต้นพูดคุย <span>↗</span></a>
       </header>
@@ -38,7 +39,7 @@ export default function DesignTwo() {
           <div className="v2-hero-actions"><a href="#solutions">ดูบริการทั้งหมด <span>↓</span></a><a href="#about">รู้จัก Engma Thailand</a></div>
         </div>
         <div className="v2-hero-visual">
-          <div className="v2-photo-frame"><img src="/assets/bangkok.webp" alt="กรุงเทพมหานคร ศูนย์กลางธุรกิจของประเทศไทย" /></div>
+          <div className="v2-photo-frame"><img src={assetPath('/assets/bangkok.webp')} alt="กรุงเทพมหานคร ศูนย์กลางธุรกิจของประเทศไทย" /></div>
           <div className="v2-visual-label">CHINA <i /> THAILAND</div>
           <div className="v2-vertical-copy">TALENT · PEOPLE · SOLUTIONS · GROWTH</div>
         </div>
@@ -59,7 +60,7 @@ export default function DesignTwo() {
       </section>
 
       <section className="v2-bridge">
-        <img src="/assets/ship.webp" alt="เส้นทางโลจิสติกส์ระหว่างประเทศ" /><div className="v2-bridge-shade" />
+        <img src={assetPath('/assets/ship.webp')} alt="เส้นทางโลจิสติกส์ระหว่างประเทศ" /><div className="v2-bridge-shade" />
         <div className="v2-bridge-copy"><span>ONE PARTNER · TWO MARKETS</span><h2>เชื่อมมาตรฐานจากจีน<br />เข้ากับการปฏิบัติงานในไทย</h2></div>
         <div className="v2-bridge-points"><div><span>01</span><strong>คน</strong><small>Recruitment & Workforce</small></div><div><span>02</span><strong>ระบบ</strong><small>Process & Compliance</small></div><div><span>03</span><strong>การเติบโต</strong><small>Business Advisory</small></div></div>
       </section>
@@ -68,12 +69,12 @@ export default function DesignTwo() {
         <div className="v2-section-label"><span>02</span> SOLUTIONS</div>
         <div className="v2-solutions-head"><h2>บริการที่เดินไปพร้อม<br />ทุกช่วงของการลงทุน</h2><p>เลือกใช้บริการรายส่วน หรือออกแบบเป็นโซลูชันเดียวตั้งแต่เริ่มตั้งบริษัทจนถึงการบริหารกำลังคนระยะยาว</p></div>
         <div className="v2-solution-list">
-          {solutions.map((solution) => <article key={solution.no}><div className="v2-solution-image"><img src={solution.image} alt="" /><span>{solution.no}</span></div><div className="v2-solution-copy"><p>{solution.title}</p><h3>{solution.thai}</h3><div className="v2-solution-detail"><p>{solution.copy}</p><ul>{solution.items.map((item) => <li key={item}>{item}</li>)}</ul></div></div></article>)}
+          {solutions.map((solution) => <article key={solution.no}><div className="v2-solution-image"><img src={assetPath(solution.image)} alt="" /><span>{solution.no}</span></div><div className="v2-solution-copy"><p>{solution.title}</p><h3>{solution.thai}</h3><div className="v2-solution-detail"><p>{solution.copy}</p><ul>{solution.items.map((item) => <li key={item}>{item}</li>)}</ul></div></div></article>)}
         </div>
       </section>
 
       <section className="v2-strengths" id="strengths">
-        <div className="v2-strengths-photo"><img src="/assets/team.webp" alt="ทีมงาน Engma Thailand" /></div>
+        <div className="v2-strengths-photo"><img src={assetPath('/assets/team.webp')} alt="ทีมงาน Engma Thailand" /></div>
         <div className="v2-strengths-copy"><div className="v2-section-label v2-label-light"><span>03</span> WHY ENGMA</div><h2>ทีมเดียวที่เชื่อม<br />ความเข้าใจสองประเทศ</h2><div className="v2-strength-list">{strengths.map(([no, title, copy]) => <article key={no}><span>{no}</span><div><strong>{title}</strong><p>{copy}</p></div></article>)}</div></div>
       </section>
 
@@ -84,10 +85,10 @@ export default function DesignTwo() {
       </section>
 
       <section className="v2-cta" id="contact">
-        <img src="/assets/closing.webp" alt="กรุงเทพมหานครยามค่ำ" /><div className="v2-cta-shade" /><div className="v2-cta-copy"><span>READY FOR THAILAND</span><h2>ให้การเริ่มต้นในไทย<br />มีทีมที่เข้าใจอยู่ข้างคุณ</h2><a href="mailto:engmahro@engma.net">พูดคุยกับทีม Engma <i>↗</i></a></div>
+        <img src={assetPath('/assets/closing.webp')} alt="กรุงเทพมหานครยามค่ำ" /><div className="v2-cta-shade" /><div className="v2-cta-copy"><span>READY FOR THAILAND</span><h2>ให้การเริ่มต้นในไทย<br />มีทีมที่เข้าใจอยู่ข้างคุณ</h2><a href="mailto:engmahro@engma.net">พูดคุยกับทีม Engma <i>↗</i></a></div>
       </section>
 
-      <footer className="v2-footer"><div><img src="/assets/engma-logo.png" alt="Engma 英格玛" /><span>THAILAND</span></div><p>PEOPLE CONNECT A BRIGHTER TOMORROW</p><div className="v2-footer-bottom"><span>© 2026 ENGMA THAILAND</span><Link href="/">เลือกแบบเว็บไซต์</Link></div></footer>
+      <footer className="v2-footer"><div><img src={assetPath('/assets/engma-logo.png')} alt="Engma 英格玛" /><span>THAILAND</span></div><p>PEOPLE CONNECT A BRIGHTER TOMORROW</p><div className="v2-footer-bottom"><span>© 2026 ENGMA THAILAND</span><Link href="/">เลือกแบบเว็บไซต์</Link></div></footer>
       <Link className="concept-switcher" href="/" aria-label="กลับไปเลือกแบบเว็บไซต์"><span>⌂</span> เลือกแบบ</Link>
     </main>
   );
