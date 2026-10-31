@@ -324,6 +324,13 @@ footer { padding: 70px clamp(24px, 6vw, 90px) 30px; background: #071622; color: 
   .footer-end { gap: 18px; flex-direction: column; }
 }
 
+/* Coming soon (home page) */
+.coming-soon { min-height: 100svh; display: grid; place-items: center; align-content: center; gap: clamp(28px, 4vw, 44px); padding: 24px; background: linear-gradient(160deg, var(--blue), #07375a); color: var(--white); }
+.coming-soon-logo { width: clamp(150px, 20vw, 230px); height: auto; filter: brightness(0) invert(1); }
+.coming-soon h1 { margin: 0; font-size: clamp(40px, 8vw, 96px); font-weight: 600; letter-spacing: .02em; text-align: center; }
+.coming-soon a { font-size: clamp(16px, 1.8vw, 20px); letter-spacing: .03em; opacity: .8; border-bottom: 1px solid rgb(255 255 255 / 35%); padding-bottom: 3px; transition: opacity .25s, border-color .25s; }
+.coming-soon a:hover { opacity: 1; border-color: var(--white); }
+
 /* Design selector */
 .selector-page { position: relative; min-height: 100svh; overflow: hidden; padding: 0 clamp(24px, 5vw, 76px); background: #e8f1f8; color: #07375a; }
 .selector-page::before { content: ''; position: absolute; inset: 0; opacity: .4; background-image: linear-gradient(rgb(7 55 90 / .07) 1px, transparent 1px), linear-gradient(90deg, rgb(7 55 90 / .07) 1px, transparent 1px); background-size: 70px 70px; mask-image: linear-gradient(90deg, black, transparent 78%); pointer-events: none; }

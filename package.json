@@ -9,6 +9,8 @@
     "dev": "vinext dev",
     "build": "vinext build",
     "build:pages": "next build --webpack",
+    "build:hostatom": "sh deploy/hostatom/build.sh",
+    "publish:nas": "sh deploy/nas/publish.sh",
     "start": "vinext start",
     "lint": "eslint . --ignore-pattern dist --ignore-pattern .next"
   },

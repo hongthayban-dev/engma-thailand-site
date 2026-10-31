@@ -1,0 +1,30 @@
+# รันบน NAS: เว็บ Engma แบบ static เสิร์ฟด้วย nginx จากโฟลเดอร์ ./site ข้างไฟล์นี้
+# อัปเดตไฟล์เว็บด้วย `npm run publish:nas` จากเครื่อง Mac (ไม่ต้องรีสตาร์ต container)
+# เปิดสู่อินเทอร์เน็ตผ่าน Cloudflare Tunnel ของตัวเอง (บัญชี Cloudflare ที่ถือโซน engma.co.th):
+#   https://engma.co.th → http://engma-site:80
+# ใส่ token ของ tunnel ในไฟล์ .env ข้างไฟล์นี้: ENGMA_TUNNEL_TOKEN=...  (ดู .env.example)
+name: engma-site
+services:
+  engma-site:
+    image: nginx:alpine
+    container_name: engma-site
+    restart: unless-stopped
+    ports:
+      # เปิดแค่ใน LAN ไว้ทดสอบ — ตัว cloudflared เป็นตัวเปิดออกอินเทอร์เน็ตจริง
+      - "${ENGMA_LAN_PORT:-8091}:80"
+    volumes:
+      - ./site:/usr/share/nginx/html:ro
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
+    mem_limit: 64m
+
+  cloudflared:
+    image: cloudflare/cloudflared:latest
+    container_name: engma-cloudflared
+    restart: unless-stopped
+    # --protocol http2: ใช้ TCP แทน QUIC (UDP) เหมือน MAHA48 — เราเตอร์บ้านบางตัวบล็อก UDP 7844
+    command: tunnel --no-autoupdate --protocol http2 run
+    environment:
+      TUNNEL_TOKEN: ${ENGMA_TUNNEL_TOKEN:?ใส่ ENGMA_TUNNEL_TOKEN ในไฟล์ .env}
+    depends_on:
+      - engma-site
+    mem_limit: 128m
