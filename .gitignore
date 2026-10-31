@@ -40,3 +40,6 @@ next-env.d.ts
 /work/
 /deploy/nas/site/
 /deploy/nas/.env
+
+# local design export for Adobe XD, not part of the site
+/design-export/
