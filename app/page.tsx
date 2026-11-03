@@ -213,8 +213,8 @@ export default function Home() {
         <div className="hero-orbit orbit-one" /><div className="hero-orbit orbit-two" />
         <div className="hero-content">
           <p className="eyebrow"><span /> ENGMA THAILAND · PEOPLE / BUSINESS / BEYOND</p>
-          <h1>เชื่อมคน<br />ขับเคลื่อน<span>ความเป็นไปได้</span></h1>
-          <p className="hero-copy">ผู้ให้บริการทรัพยากรบุคคลสำหรับธุรกิจจีนที่ขยายสู่ประเทศไทยโดยเฉพาะ<br />ให้ทุกบริษัทหยั่งรากในไทยได้อย่างไร้กังวล และเติบโตได้เต็มที่</p>
+          <h1>บริการ HR ครบวงจร<br />สำหรับ<span>ธุรกิจจีนในไทย</span></h1>
+          <p className="hero-copy">สรรหาบุคลากร เอาต์ซอร์สไลน์ผลิต งานเงินเดือนและประกันสังคม วีซ่า และที่ปรึกษาการลงทุน<br />ครบในที่เดียว โดยทีมร่วมทุนจีน–ไทย ที่เข้าใจทั้งกฎหมายและวัฒนธรรมของสองประเทศ</p>
           <div className="hero-actions">
             <a className="button button-primary" href="#services">สำรวจบริการ <span>↓</span></a>
             <a className="button button-ghost" href="#about"><i className="play">▶</i> รู้จัก Engma Thailand</a>

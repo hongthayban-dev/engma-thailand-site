@@ -46,7 +46,7 @@ nav a:hover { color: var(--lime); opacity: 1; }
 .hero-content { position: relative; z-index: 2; margin-left: clamp(24px, 9vw, 150px); max-width: 990px; padding: 120px 0 170px; }
 .eyebrow { display: flex; align-items: center; gap: 10px; font: 500 11px/1.2 Arial, sans-serif; letter-spacing: .18em; color: rgb(255 255 255 / 68%); }
 .eyebrow span { width: 38px; height: 2px; background: var(--lime); }
-h1 { margin: 28px 0 20px; font-size: clamp(54px, 7.1vw, 108px); line-height: .94; letter-spacing: -.06em; font-weight: 650; }
+h1 { margin: 28px 0 20px; font-size: clamp(50px, 6.2vw, 96px); line-height: .94; letter-spacing: -.06em; font-weight: 650; }
 h1 span { color: var(--lime); display: inline-block; margin-left: .13em; }
 .hero-copy { max-width: 670px; color: rgb(255 255 255 / 74%); font-size: 17px; line-height: 1.9; }
 .hero-actions { display: flex; gap: 14px; margin-top: 34px; }
@@ -362,7 +362,7 @@ footer { padding: 70px clamp(24px, 6vw, 90px) 30px; background: #071622; color: 
 
 @media (max-width: 560px) {
   .section { padding-top: 85px; padding-bottom: 85px; }
-  h1 { font-size: clamp(46px, 15vw, 72px); }
+  h1 { font-size: clamp(38px, 11vw, 64px); }
   h1 span { display: block; margin: .08em 0 0; }
   .hero-content { padding-bottom: 205px; }
   .hero-copy br { display: none; }
