@@ -43,3 +43,6 @@ next-env.d.ts
 
 # local design export for Adobe XD, not part of the site
 /design-export/
+
+# source company profile deck (199MB, over GitHub's file limit)
+/Engma Profile.pptx

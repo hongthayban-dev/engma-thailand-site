@@ -1,130 +1,73 @@
-# ย้ายเว็บ Engma Thailand ขึ้น engma.co.th
+# Engma Thailand — สถานะเว็บและการ deploy
 
-> เริ่มบันทึก 10 ต.ค. 2026 · เว็บออนไลน์ 14 ต.ค. 2026
+> อัปเดตล่าสุด 3 พ.ย. 2026
 
-## ✅ ออนไลน์แล้ว 14 ต.ค. 2026 — https://engma.co.th
+## สรุปสั้น
 
-> หัวข้อด้านล่างจาก "สถานะตอนนี้" ลงไปเป็นบันทึกเก่าของวันที่ 10 ต.ค. — ให้ยึดหัวข้อนี้เป็นหลัก
+| ที่อยู่ | ใช้ทำอะไร | สถานะ |
+|---|---|---|
+| **https://hongthayban-dev.github.io/engma-thailand-site/** | **ลิงก์ให้ลูกค้าดู** (GitHub Pages) | ✅ เว็บเต็มล่าสุด อัปเดตเองทุกครั้งที่ push `main` |
+| https://engma.co.th | เว็บจริง (NAS + Cloudflare Tunnel) | 🔒 **Coming Soon เท่านั้น** จนกว่าเจ้าของจะสั่ง |
+| https://engma-thailand.hongthayban.chatgpt.site | ลิงก์ตัวอย่างเก่า (Codex Sites) | ⚠️ เวอร์ชันเก่า ไม่ได้อัปเดตแล้ว |
 
-- **2 พ.ย. 2026:** แบบ 1 ถูก publish ขึ้น `https://engma.co.th` โดยเข้าใจคำสั่งผิด แล้วเอาลงในวันเดียวกัน → ตอนนี้มีแค่หน้า Coming Soon, `/design-1/` และ `/design-2/` เป็น 404 แล้ว
-  - **engma.co.th ต้องมีแค่หน้า Coming Soon เท่านั้น ไม่มีข้อมูลอื่นจนกว่าเจ้าของจะสั่ง** — เว็บให้ลูกค้าดูคือ `https://engma-thailand.hongthayban.chatgpt.site`
-  - ⚠️ **ยังค้าง:** รูปเก่า 9 ไฟล์ลบจาก NAS แล้ว แต่ยังเปิดได้ถ้ารู้ URL เพราะค้างใน cache ของ Cloudflare (`max-age` 30 วัน หมดเองราว 2 ธ.ค. 2026) → login บัญชี `momotaromeet@gmail.com` → โซน `engma.co.th` → Caching → Configuration → Custom Purge ใส่ URL `https://engma.co.th/assets/` ตามด้วย `bangkok.webp`, `bpo.webp`, `closing.webp`, `engma-logo.png`, `factory.webp`, `legal.webp`, `process-office.webp`, `team.webp`, `thai-port.webp`
-  - `deploy/nas/site/` เป็น Coming Soon ที่ทำจากไฟล์สำรอง ไม่ได้ build จากโค้ด (`app/page.tsx` คือแบบ 1) — สำรองไว้ที่ `outputs/coming-soon-only-2026-11-02.tar.gz`, ไฟล์ก่อนล้างอยู่ที่ `outputs/site-before-2026-11-02.tar.gz`
-  - ลบแบบ 2 ออกจากโค้ดแล้ว (`app/_design-2-archived/`, สไตล์ใน `globals.css`, `public/assets/ship.webp`) commit แล้ว 3 พ.ย. 2026 — `chatgpt.site/design-2` ยังเปิดได้จนกว่าจะ deploy เว็บนั้น
-  - ⚠️ **ห้ามรัน `npm run publish:nas` ถ้าเจ้าของไม่ได้สั่ง** เพราะจะเอาเว็บเต็มจากโค้ดขึ้น engma.co.th ทับ Coming Soon ทันที (ตอนนี้รันไม่ได้อยู่ดี จนกว่าจะแก้ `node_modules`: เป็น symlink ไป `/tmp/engma_site_runtime/node_modules` ซึ่งหายไปแล้ว → ต้องลง `npm ci` ใหม่ก่อน)
-  - `out/` และ `outputs/engma-hostatom.zip` ยังเป็นของเก่า 15 ต.ค. (รอบนี้ build นอกโปรเจกต์) อย่าเอาไปอัป Hostatom
-  - `https://engma-thailand.hongthayban.chatgpt.site` ยังเป็นหน้าเลือกแบบเวอร์ชันเก่า ไม่ได้อัปเดตตาม — การ deploy ต้องทำในแอป Codex (ปลั๊กอิน Sites) เพราะ Claude Code ไม่มีเครื่องมือนี้ และ `codex exec` ในเครื่องใช้ไม่ได้ (ไม่รองรับ model `gpt-6.1-sol` กับบัญชี ChatGPT, ไม่เห็นปลั๊กอิน Sites ใน config) · `npm run build` (แบบ Sites) จาก `778b313` ผ่านแล้ว
-  - **3 พ.ย. 2026:** ลบ repo GitHub เดิมแล้วสร้างใหม่ (ชื่อเดิม, public) และใช้ GitHub Pages เป็นลิงก์ให้ลูกค้าดู → https://hongthayban-dev.github.io/engma-thailand-site (ต้องตั้ง Settings → Pages → Source = GitHub Actions)
-- **31 ต.ค. 2026:** ตัดสินใจแล้ว → ใช้ **แบบ 1** เป็นหน้าแรกจริง (`app/page.tsx` ตอนนี้คือเนื้อหาเต็มของแบบ 1 แทน Coming Soon แล้ว) — โฟลเดอร์ `/design-1/`, `/design-2/` เปลี่ยนชื่อเป็น `_design-1-archived`, `_design-2-archived` (ขึ้นต้น `_` ทำให้ Next.js ไม่ทำเป็น route แล้ว แต่ไฟล์ยังอยู่เผื่ออ้างอิง) — commit และ push ขึ้น GitHub แล้ว
-- ~~หน้าแรกเป็น "Coming Soon" สีน้ำเงิน (`app/page.tsx`) — `/design-1/`, `/design-2/` ยังเปิดได้ด้วยลิงก์ตรง~~ (สถานะเก่าก่อน 31 ต.ค.)
-- **Cloudflare:** โซน `engma.co.th` อยู่บัญชี **`momotaromeet@gmail.com`** (Hostatom ตั้งให้, NS `gerald` / `stephane.ns.cloudflare.com`)
-  - Tunnel **`engma-site`** (บัญชีเดียวกัน): `engma.co.th` และ `www.engma.co.th` → `http://engma-site:80`
-  - เปิด Always Use HTTPS แล้ว, `www` → `engma.co.th` (nginx)
-  - DNS อีเมล Google Workspace (MX/SPF/TXT verify/CNAME) Hostatom เป็นคนใส่ — อย่าลบ (MX `lt3.aspmx.l.google.com` พิมพ์ผิด ควรเป็น `alt3`)
-- **NAS:** project `deploy/nas` รันด้วย SSH (`ssh worktech@100.116.39.83`, `sudo -n /usr/local/bin/docker compose up -d`)
-  - container `engma-site` (nginx, LAN `:8091`) + `engma-cloudflared` (tunnel ของตัวเอง ไม่พึ่ง MAHA48 แล้ว)
-  - token ของ tunnel อยู่ใน `deploy/nas/.env` (ห้าม commit — อยู่ใน `.gitignore`)
-- โซน `engma.co.th` ที่เคยเพิ่มในบัญชี `hongthayban@gmail.com` (pending, NS mitch/nia) ไม่ได้ใช้ — Cloudflare จะลบเองเมื่อไม่ active
-- commit และ push ขึ้น GitHub แล้ว (31 ต.ค.) → GitHub Pages จะ build ใหม่เป็นหน้าแรกแบบ 1 ด้วย (ของ engma.co.th จริงยังต้องรัน `npm run publish:nas` แยกต่างหากถ้าต้องการให้ตรงกัน)
+- โค้ด: https://github.com/hongthayban-dev/engma-thailand-site (public — สร้างใหม่ 3 พ.ย. 2026 หลังลบ repo เดิม)
+- หน้าเว็บ: [app/page.tsx](app/page.tsx) (หน้าเดียว) + [app/globals.css](app/globals.css) — Next.js 16 static export
 
-## สถานะตอนนี้
+## กฎสำคัญ
 
-- **โดเมน** `engma.co.th` จดกับ Hostatom เมื่อ 10 ต.ค. 2026 (ในชื่อ บริษัท อิงมา (ไทยแลนด์) จำกัด)
-  - Name Server ยังเป็นตัวพักโดเมน `PARK1.HOSTATOM.COM` / `PARK2.HOSTATOM.COM` → ยังไม่มีเว็บแสดง
-- **เว็บเป็น HTML ล้วน (static)** ไม่มีฐานข้อมูลหรือ API → ไม่ต้องใช้ Node.js บนเซิร์ฟเวอร์
-  - build แล้วทดสอบบนเครื่อง: ทุกหน้า/ทุกรูปโหลดได้ ไม่มีลิงก์เสีย
-  - ลิงก์และรูปตอนแชร์ (og.png) ชี้ไปที่ `https://engma.co.th` แล้ว
-- **ตอนนี้เว็บยังออนไลน์อยู่ที่ GitHub Pages:** https://hongthayban-dev.github.io/engma-thailand-site
-- **ไฟล์ที่เพิ่ม/แก้ทั้งหมดยังไม่ได้ commit ลง git**
+- **engma.co.th ต้องเป็นหน้า Coming Soon เท่านั้น** ห้ามเอาเนื้อหาเว็บขึ้นจนกว่าเจ้าของจะสั่ง
+- **ห้ามรัน `npm run publish:nas`** ถ้าเจ้าของไม่ได้สั่ง — คำสั่งนี้เอาเว็บเต็มขึ้น engma.co.th ทับ Coming Soon ทันที
+- `deploy/nas/site/` (Coming Soon ที่ออนไลน์อยู่) ทำจากไฟล์สำรอง ไม่ได้ build จากโค้ด — สำรองไว้ที่ `outputs/coming-soon-only-2026-11-02.tar.gz`
+- ห้าม commit `deploy/nas/.env` (token ของ tunnel) และ `Engma Profile.pptx` (199MB เกินขีดจำกัด GitHub) — อยู่ใน `.gitignore` แล้ว
 
-## ต้องตัดสินใจก่อน
+## เนื้อหาเว็บ
 
-- [ ] **จะเอาเว็บไว้ที่ไหน** (ดูตารางด้านล่าง) — คุยล่าสุดเอียงไปทาง NAS
-- [x] **หน้าแรกจะเป็นอะไร** — ตัดสินใจแล้ว (31 ต.ค. 2026): **แบบ 1** เป็นหน้าแรกจริง
-- [ ] **ต้องการอีเมล `@engma.co.th` ไหม** — ตอนนี้ปุ่มติดต่อในเว็บใช้ `engmahro@engma.net`
+- เนื้อหามาจาก `Engma Profile.pptx` (สไลด์ภาษาจีน 36 หน้า) เรียงตาม 4 บทของสไลด์: เกี่ยวกับเรา → บริการ → จุดแข็ง → ขั้นตอน
+- หัวข้อแรก: "บริการ HR ครบวงจร สำหรับธุรกิจจีนในไทย" (เจ้าของขอให้อ่านแล้วรู้ทันทีว่าบริษัททำอะไร)
+- **รูปทั้งหมดกำหนดที่ object `images` ด้านบนของ `app/page.tsx`** — เปลี่ยนรูปแก้ที่เดียว
+- ⚠️ **ภาพชั่วคราว รอเจ้าของหารูปจริงมาเปลี่ยน:**
+  - `public/assets/placeholder/local-resources.svg` — ท่าเรือ RoRo ของ Namyong Group (แนะนำ 1600 × 1100 px)
+  - `public/assets/placeholder/team.svg` — ทีมงาน / สำนักงาน Engma (แนะนำ 1200 × 1500 px)
+- ปุ่มติดต่อใช้ `engmahro@engma.net` และลิงก์ https://www.engmahro.com/lianxiwomen/
+- แบบ 1 เดิมเก็บไว้อ้างอิงที่ `app/_design-1-archived/` (ขึ้นต้น `_` จึงไม่เป็น route) — แบบ 2 ลบทิ้งแล้ว
 
-| ทางเลือก | ค่าใช้จ่าย | ข้อดี | ข้อเสีย | สถานะ |
-|---|---|---|---|---|
-| **A. NAS + Cloudflare Tunnel** | ฟรี | ใช้ระบบที่มีอยู่แล้ว, ไม่ต้องเปิด port เราเตอร์, https ฟรี | NAS ดับ / เน็ตบ้านล่ม / ไฟดับ = เว็บล่ม, พึ่ง cloudflared ของโปรเจกต์ MAHA48 | เตรียมไฟล์แล้ว |
-| **B. Hostatom Web Hosting** | ค่าโฮสติ้งรายปี | เสถียร, มีอีเมล `@engma.co.th` ในแพ็ก | ต้องจ่ายเพิ่ม, อัปเดตต้องอัป zip เอง | เตรียมไฟล์แล้ว |
-| **C. Cloudflare Pages** | ฟรี | เสถียร ไม่พึ่ง NAS | ต้องตั้งค่าใหม่ | ยังไม่ได้เตรียม |
+## การอัปเดตเว็บ
 
-ไม่ว่าเลือกทางไหน: **ต่ออายุโดเมนกับ Hostatom ทุกปี**
+**ลิงก์ลูกค้า (GitHub Pages):** แก้โค้ด → commit → `git push origin main` → GitHub Actions (`.github/workflows/deploy-pages.yml`) build และ deploy เองใน 2–3 นาที
+- Settings → Pages → Source ต้องเป็น **GitHub Actions**
+- ดูผล build: https://github.com/hongthayban-dev/engma-thailand-site/actions
 
----
-
-## A. NAS + Cloudflare Tunnel
-
-เว็บรันเป็น container `engma-site` (nginx) บน NAS ที่ port `8091`
-คนเข้าเว็บพิมพ์แค่ `engma.co.th` — Cloudflare Tunnel ส่งต่อเข้า NAS ให้เอง
-ใช้ `cloudflared` ตัวเดียวกับโปรเจกต์ MAHA48-event (network `maha48-event_default`) แบบเดียวกับ wm-careers
-
-**เตรียมไว้แล้ว**
-
-- [x] `deploy/nas/docker-compose.yml` — container `engma-site`, port 8091 (ว่าง ไม่ชนกับ 80, 3000, 8080, 8088, 8090)
-- [x] `deploy/nas/nginx.conf` — www → engma.co.th, หน้า 404, ตั้งค่า cache, ไม่เปิดไฟล์ซ่อน
-- [x] `deploy/nas/publish.sh` — build แล้วอัปเดตไฟล์ใน `deploy/nas/site/` (รันไปแล้ว 1 รอบ ไฟล์พร้อม)
-- [ ] ⚠️ **nginx.conf ยังไม่ได้ทดสอบ** (Docker Desktop บน Mac ไม่ได้เปิด) → ทดสอบที่ขั้น 3
-
-**ขั้นตอนที่ต้องทำ**
-
-1. [ ] **Cloudflare** → Add site → `engma.co.th` → Free plan → จด Name Server 2 ตัวที่ได้
-2. [ ] **Hostatom** (หน้าลูกค้า) → โดเมน `engma.co.th` → เปลี่ยน Name Server จาก PARK1/PARK2 เป็น 2 ตัวของ Cloudflare → รอจน Cloudflare ขึ้น **Active** (.co.th อาจใช้หลายชั่วโมง)
-3. [ ] **NAS → Container Manager** → สร้าง Project ใหม่จากโฟลเดอร์
-   `/volume1/docker/เวปฝน/ตัวอย่าง ฝน/engma-thailand-site/deploy/nas`
-   - โปรเจกต์ MAHA48-event ต้องรันอยู่ก่อน (ไม่งั้นหา network `maha48-event_default` ไม่เจอ)
-   - ทดสอบในวงแลน: `http://192.168.1.115:8091` , `/design-1/` , `/design-2/`
-4. [ ] **Cloudflare Zero Trust → Networks → Tunnels** → เลือก tunnel ของ MAHA48 → Public Hostname เพิ่ม:
-   - `engma.co.th` → HTTP → `engma-site:80`
-   - `www.engma.co.th` → HTTP → `engma-site:80`
-5. [ ] **Cloudflare → SSL/TLS → Edge Certificates** → เปิด **Always Use HTTPS**
-6. [ ] ทดสอบ: `https://engma.co.th` , `https://www.engma.co.th` (ต้องเด้งไปไม่มี www) , `/design-1/` , `/design-2/`
-
-**อัปเดตเว็บครั้งต่อไป:** แก้โค้ด → `npm run publish:nas` → เว็บเปลี่ยนทันที ไม่ต้องรีสตาร์ต container
-(ถ้า build พัง เว็บที่ออนไลน์อยู่ไม่โดนกระทบ)
-
-**ถ้าต้องการอีเมล `@engma.co.th`:** NAS ทำให้ไม่ได้ → ใช้ Google Workspace / Zoho / อีเมล Hostatom แล้วตั้ง MX record ใน Cloudflare
-
----
-
-## B. Hostatom Web Hosting
-
-**เตรียมไว้แล้ว**
-
-- [x] `deploy/hostatom/.htaccess` — บังคับ https, www → engma.co.th, หน้า 404, cache
-- [x] `deploy/hostatom/build.sh` — build + แพ็ก zip
-- [x] ไฟล์พร้อมอัป: `outputs/engma-hostatom.zip` (~6 MB)
-
-**ขั้นตอนที่ต้องทำ**
-
-1. [ ] ซื้อ Web Hosting (Linux) แพ็กเล็กสุด ผูกกับ `engma.co.th`
-2. [ ] เปลี่ยน Name Server เป็นของโฮสติ้ง (ตามอีเมลยืนยัน — ถ้าบัญชีเดียวกัน Hostatom อาจเปลี่ยนให้เอง)
-3. [ ] เปิด SSL ฟรี (Let's Encrypt) ในแผงควบคุม — **ต้องทำก่อนอัปไฟล์** เพราะ `.htaccess` บังคับ https
-4. [ ] File Manager → `public_html` (DirectAdmin: `domains/engma.co.th/public_html`) → อัป zip → Extract → ลบ zip และ `index.html` เดิมของ Hostatom
-5. [ ] ทดสอบแบบเดียวกับข้อ A.6
-
-**อัปเดตเว็บครั้งต่อไป:** `npm run build:hostatom` → อัป `outputs/engma-hostatom.zip` ทับแบบเดิม
-
----
-
-## หลังย้ายเสร็จ
-
-- [ ] ปิด GitHub Pages (Settings → Pages) หรือลบ `.github/workflows/deploy-pages.yml`
-- [ ] commit ไฟล์ทั้งหมดลง git
-- [ ] ถ้าไม่ใช้ทางเลือกไหน ลบโฟลเดอร์ `deploy/` ของทางนั้นทิ้ง (ยกเว้น `deploy/hostatom/build.sh` ที่ `publish:nas` ใช้อยู่)
-
-## คำสั่ง
+**engma.co.th (NAS):** เฉพาะเมื่อเจ้าของสั่งเท่านั้น → `npm run publish:nas` (build แล้ว rsync ลง `deploy/nas/site/` เว็บเปลี่ยนทันที ไม่ต้องรีสตาร์ต container)
 
 | คำสั่ง | ทำอะไร |
 |---|---|
-| `npm run build:hostatom` | build เป็น HTML ลง `out/` + แพ็ก `outputs/engma-hostatom.zip` |
-| `npm run publish:nas` | build แล้วอัปเดตไฟล์ใน `deploy/nas/site/` (เว็บบน NAS เปลี่ยนทันที) |
 | `npm run build:pages` | build สำหรับ GitHub Pages (ใช้ใน GitHub Actions) |
+| `npm run build:hostatom` | build เป็น HTML ลง `out/` + แพ็ก `outputs/engma-hostatom.zip` (`publish:nas` เรียกใช้ตัวนี้) |
+| `npm run publish:nas` | build แล้วอัปเดต `deploy/nas/site/` — ⚠️ ดูกฎด้านบน |
 
-## ไฟล์ที่แก้/เพิ่ม (ยังไม่ commit)
+## โครงสร้างระบบ engma.co.th
 
-- `next.config.ts` — รองรับ `STATIC_EXPORT=true` (นอกจาก `GITHUB_PAGES=true`)
-- `package.json` — เพิ่ม `build:hostatom`, `publish:nas`
-- `.gitignore` — เพิ่ม `/deploy/nas/site/`
-- `deploy/hostatom/` — `.htaccess`, `build.sh`
-- `deploy/nas/` — `docker-compose.yml`, `nginx.conf`, `publish.sh`
+- **โดเมน:** จดกับ Hostatom (10 ต.ค. 2026, ในชื่อ บริษัท อิงมา (ไทยแลนด์) จำกัด) — **ต่ออายุทุกปี**
+- **Cloudflare:** โซน `engma.co.th` อยู่บัญชี `momotaromeet@gmail.com` (NS `gerald` / `stephane.ns.cloudflare.com`)
+  - Tunnel `engma-site`: `engma.co.th` และ `www.engma.co.th` → `http://engma-site:80`
+  - เปิด Always Use HTTPS แล้ว, `www` → `engma.co.th` (ทำใน nginx)
+  - DNS อีเมล Google Workspace (MX/SPF/TXT/CNAME) Hostatom เป็นคนใส่ — อย่าลบ
+- **NAS:** `ssh worktech@100.116.39.83`, รันด้วย `sudo -n /usr/local/bin/docker compose up -d` ในโฟลเดอร์ `deploy/nas`
+  - container `engma-site` (nginx, LAN `:8091`) + `engma-cloudflared` (tunnel ของตัวเอง)
+  - token ของ tunnel อยู่ใน `deploy/nas/.env`
+
+## งานค้าง
+
+- [ ] **รูปเก่าค้างใน cache Cloudflare** — ลบจาก NAS แล้ว แต่ยังเปิดได้ถ้ารู้ URL (หมดอายุเองราว 2 ธ.ค. 2026) ถ้าจะล้างก่อน: บัญชี `momotaromeet@gmail.com` → โซน `engma.co.th` → Caching → Configuration → Custom Purge ใส่ `https://engma.co.th/assets/` ตามด้วย `bangkok.webp`, `bpo.webp`, `closing.webp`, `engma-logo.png`, `factory.webp`, `legal.webp`, `process-office.webp`, `team.webp`, `thai-port.webp`
+- [ ] **เปลี่ยนภาพชั่วคราว 2 ภาพ** (ดูหัวข้อ "เนื้อหาเว็บ")
+- [ ] **MX record พิมพ์ผิด** `lt3.aspmx.l.google.com` ควรเป็น `alt3.aspmx.l.google.com`
+- [ ] **ตัดสินใจเรื่องอีเมล `@engma.co.th`** — ตอนนี้เว็บใช้ `engmahro@engma.net` (NAS ทำอีเมลไม่ได้ ต้องใช้ Google Workspace / Zoho แล้วตั้ง MX ใน Cloudflare)
+- [ ] **`node_modules` ในโปรเจคเสีย** — เป็นไฟล์ symlink ไป `/tmp/engma_site_runtime/node_modules` ที่หายไปแล้ว ต้องลบแล้ว `npm ci` ใหม่ก่อน build ในเครื่อง
+- [ ] `out/` และ `outputs/engma-hostatom.zip` เป็นของเก่า 15 ต.ค. — อย่าเอาไปใช้
+- [ ] ปิดลิงก์ chatgpt.site เก่า (ทำได้จากแอป Codex เท่านั้น) หรือปล่อยไว้แต่อย่าส่งให้ลูกค้าแล้ว
+
+## หมายเหตุเครื่องที่ใช้ทำงาน (Windows)
+
+- โปรเจคอยู่บน NAS (`V:\` = `\\100.116.39.83\docker`) → git จะเตือน "dubious ownership" แก้ด้วย `git config --global --add safe.directory '*'`
+- เครื่องนี้ยังไม่ได้ตั้งชื่อผู้ใช้ git — commit ใช้ `ห้องท้ายบ้าน <hongthayban@gmail.com>`
+- ติดตั้ง Node.js 22 แล้ว (3 พ.ย. 2026) — ยังไม่มี Python และ GitHub CLI
