@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1500" viewBox="0 0 1200 1500">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#06688e"/>
+      <stop offset="1" stop-color="#0e2a3d"/>
+    </linearGradient>
+    <pattern id="grid" width="80" height="80" patternUnits="userSpaceOnUse">
+      <path d="M80 0H0V80" fill="none" stroke="#ffffff" stroke-opacity=".08"/>
+    </pattern>
+  </defs>
+  <rect width="1200" height="1500" fill="url(#bg)"/>
+  <rect width="1200" height="1500" fill="url(#grid)"/>
+  <rect x="40" y="40" width="1120" height="1420" fill="none" stroke="#d8ef38" stroke-opacity=".5" stroke-dasharray="14 12" stroke-width="3"/>
+  <g font-family="Noto Sans Thai, Arial, sans-serif" text-anchor="middle" fill="#ffffff">
+    <text x="600" y="670" font-size="30" letter-spacing="8" fill="#d8ef38">ภาพชั่วคราว · PLACEHOLDER</text>
+    <text x="600" y="770" font-size="58" font-weight="600">ทีมงาน / สำนักงาน Engma</text>
+    <text x="600" y="840" font-size="28" fill-opacity=".65">ส่วน "ทีมงานมากประสบการณ์" · แนะนำ 1200 × 1500 px</text>
+  </g>
+</svg>
