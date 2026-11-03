@@ -1,7 +1,6 @@
 'use client';
 
 import { useEffect, useMemo, useState } from 'react';
-import Link from 'next/link';
 import { assetPath } from '../site-path';
 
 type Service = {
@@ -330,7 +329,6 @@ export default function Home() {
         <div className="footer-links"><a href="#about">เกี่ยวกับเรา</a><a href="#services">บริการ</a><a href="#advantages">จุดแข็ง</a><a href="#process">ขั้นตอน</a></div>
         <div className="footer-end"><span>ENGMA (THAILAND) COMPANY LIMITED</span><span>© 2026 ENGMA THAILAND</span></div>
       </footer>
-      <Link className="concept-switcher" href="/" aria-label="กลับไปเลือกแบบเว็บไซต์"><span>⌂</span> เลือกแบบ</Link>
     </main>
   );
 }

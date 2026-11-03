@@ -6,6 +6,15 @@
 
 > หัวข้อด้านล่างจาก "สถานะตอนนี้" ลงไปเป็นบันทึกเก่าของวันที่ 10 ต.ค. — ให้ยึดหัวข้อนี้เป็นหลัก
 
+- **2 พ.ย. 2026:** แบบ 1 ถูก publish ขึ้น `https://engma.co.th` โดยเข้าใจคำสั่งผิด แล้วเอาลงในวันเดียวกัน → ตอนนี้มีแค่หน้า Coming Soon, `/design-1/` และ `/design-2/` เป็น 404 แล้ว
+  - **engma.co.th ต้องมีแค่หน้า Coming Soon เท่านั้น ไม่มีข้อมูลอื่นจนกว่าเจ้าของจะสั่ง** — เว็บให้ลูกค้าดูคือ `https://engma-thailand.hongthayban.chatgpt.site`
+  - ⚠️ **ยังค้าง:** รูปเก่า 9 ไฟล์ลบจาก NAS แล้ว แต่ยังเปิดได้ถ้ารู้ URL เพราะค้างใน cache ของ Cloudflare (`max-age` 30 วัน หมดเองราว 2 ธ.ค. 2026) → login บัญชี `momotaromeet@gmail.com` → โซน `engma.co.th` → Caching → Configuration → Custom Purge ใส่ URL `https://engma.co.th/assets/` ตามด้วย `bangkok.webp`, `bpo.webp`, `closing.webp`, `engma-logo.png`, `factory.webp`, `legal.webp`, `process-office.webp`, `team.webp`, `thai-port.webp`
+  - `deploy/nas/site/` เป็น Coming Soon ที่ทำจากไฟล์สำรอง ไม่ได้ build จากโค้ด (`app/page.tsx` คือแบบ 1) — สำรองไว้ที่ `outputs/coming-soon-only-2026-11-02.tar.gz`, ไฟล์ก่อนล้างอยู่ที่ `outputs/site-before-2026-11-02.tar.gz`
+  - ลบแบบ 2 ออกจากโค้ดแล้ว (`app/_design-2-archived/`, สไตล์ใน `globals.css`, `public/assets/ship.webp`) commit แล้ว 3 พ.ย. 2026 — `chatgpt.site/design-2` ยังเปิดได้จนกว่าจะ deploy เว็บนั้น
+  - ⚠️ **ห้ามรัน `npm run publish:nas` ถ้าเจ้าของไม่ได้สั่ง** เพราะจะเอาเว็บเต็มจากโค้ดขึ้น engma.co.th ทับ Coming Soon ทันที (ตอนนี้รันไม่ได้อยู่ดี จนกว่าจะแก้ `node_modules`: เป็น symlink ไป `/tmp/engma_site_runtime/node_modules` ซึ่งหายไปแล้ว → ต้องลง `npm ci` ใหม่ก่อน)
+  - `out/` และ `outputs/engma-hostatom.zip` ยังเป็นของเก่า 15 ต.ค. (รอบนี้ build นอกโปรเจกต์) อย่าเอาไปอัป Hostatom
+  - `https://engma-thailand.hongthayban.chatgpt.site` ยังเป็นหน้าเลือกแบบเวอร์ชันเก่า ไม่ได้อัปเดตตาม — การ deploy ต้องทำในแอป Codex (ปลั๊กอิน Sites) เพราะ Claude Code ไม่มีเครื่องมือนี้ และ `codex exec` ในเครื่องใช้ไม่ได้ (ไม่รองรับ model `gpt-6.1-sol` กับบัญชี ChatGPT, ไม่เห็นปลั๊กอิน Sites ใน config) · `npm run build` (แบบ Sites) จาก `778b313` ผ่านแล้ว
+  - GitHub Actions `Deploy to GitHub Pages` ล้มเหลว 2 รอบล่าสุด (31 ต.ค.) และ GitHub Pages ขึ้น 404 — ยังไม่ได้แก้ เพราะแผนคือปิด Pages (ดู "หลังย้ายเสร็จ")
 - **31 ต.ค. 2026:** ตัดสินใจแล้ว → ใช้ **แบบ 1** เป็นหน้าแรกจริง (`app/page.tsx` ตอนนี้คือเนื้อหาเต็มของแบบ 1 แทน Coming Soon แล้ว) — โฟลเดอร์ `/design-1/`, `/design-2/` เปลี่ยนชื่อเป็น `_design-1-archived`, `_design-2-archived` (ขึ้นต้น `_` ทำให้ Next.js ไม่ทำเป็น route แล้ว แต่ไฟล์ยังอยู่เผื่ออ้างอิง) — commit และ push ขึ้น GitHub แล้ว
 - ~~หน้าแรกเป็น "Coming Soon" สีน้ำเงิน (`app/page.tsx`) — `/design-1/`, `/design-2/` ยังเปิดได้ด้วยลิงก์ตรง~~ (สถานะเก่าก่อน 31 ต.ค.)
 - **Cloudflare:** โซน `engma.co.th` อยู่บัญชี **`momotaromeet@gmail.com`** (Hostatom ตั้งให้, NS `gerald` / `stephane.ns.cloudflare.com`)
